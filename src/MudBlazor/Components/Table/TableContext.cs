@@ -117,7 +117,7 @@ namespace MudBlazor
         {
             CurrentSortLabel = label;
             if (label.SortDirection == SortDirection.None && override_direction_none)
-                label.SetSortDirection(SortDirection.Ascending);
+                label.SetSortDirection(SortDirection.Descending);
             SortDirection = label.SortDirection;
             SortBy = label.SortBy;
             UpdateSortLabels(label);

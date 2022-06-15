@@ -30,7 +30,7 @@ namespace MudBlazor
         /// <summary>
         /// The Icon used to display sortdirection.
         /// </summary>
-        [Parameter] public string SortIcon { get; set; } = Icons.Material.Filled.ArrowUpward;
+        [Parameter] public string SortIcon { get; set; } = Icons.Material.Filled.ArrowDownward;
 
         /// <summary>
         /// If true the icon will be placed before the label text.
@@ -63,6 +63,10 @@ namespace MudBlazor
         public EventCallback<SortDirection> SortDirectionChanged { get; set; }
 
         [Parameter]
+        public string XfatherWasHere { get; set; } = null;
+
+
+        [Parameter]
         public Func<T, object> SortBy { get; set; } = null;
 
         [Parameter] public string SortLabel { get; set; }
@@ -75,12 +79,12 @@ namespace MudBlazor
             switch (SortDirection)
             {
                 case SortDirection.None:
-                    return UpdateSortDirectionAsync(SortDirection.Ascending);
-
-                case SortDirection.Ascending:
                     return UpdateSortDirectionAsync(SortDirection.Descending);
 
                 case SortDirection.Descending:
+                    return UpdateSortDirectionAsync(SortDirection.Ascending);
+
+                case SortDirection.Ascending:
                     return UpdateSortDirectionAsync(Table.AllowUnsorted ? SortDirection.None : SortDirection.Ascending);
             }
 
